@@ -17,7 +17,7 @@ const UsernameMenu = () => {
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center px-3 font-bold hover:text-orange-500 gap-2">
+            <DropdownMenuTrigger className="flex items-center px-3 font-bold hover:text-orange-500 gap-2 hover:bg-slate-100 hover:p-3 hover:rounded-md hover:shadow-md">
                 <CircleUserRound className="text-orange-500" />
                 {user?.email}
             </DropdownMenuTrigger>
