@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import myUserRoute from "./routes/MyUserRoute";
 
 // connect to deliverEats MongoDB
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
@@ -18,12 +19,10 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-// define a route handler for the default home page
-app.get("/test", async (req: Request, res: Response) => {
-  res.json({ message: "Hello!" });
-});
+// define a route handler for the user page
+app.use("/api/my/user", myUserRoute)
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`API server running on port http://localhost:${PORT}/test`);
+  console.log(`API server running on port http://localhost:${PORT}`);
 });
