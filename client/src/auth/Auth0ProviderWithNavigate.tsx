@@ -1,8 +1,7 @@
 // Import necessary modules and types from the @auth0/auth0-react package and the events module
-import { useCreateMyUser } from "@/api/MyUserApi";
-import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-// import { on } from "events";
+
 
 // Define a type for the props, which includes children of type ReactNode
 type Props = {
@@ -26,7 +25,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
 
 
 // Define a callback function to handle redirects from the auth0 login and signup forms, optionally accepting appState and user parameters
-  const onRedirectCallback = (appState?: AppState, user?: User) => {
+  const onRedirectCallback = () => {
 
     navigate("/auth-callback"); // Navigate to the auth-callback page
 

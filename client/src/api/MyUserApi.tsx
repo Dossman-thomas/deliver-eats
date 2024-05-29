@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query"; // Import the useMutation hook from react-query for handling mutations
 
 // Base URL for the API, loaded from environment variables
@@ -12,12 +13,18 @@ type CreateUserRequest = {
 // Custom hook for creating a new user
 export const useCreateMyUser = () => {
 
+    const { getAccessTokenSilently } = useAuth0(); // Call the useAuth0 hook to retrieve the getAccessTokenSilently function to get the access token
+
     // Function to send a POST request to create a new user
     const createMyUserRequest = async (user: CreateUserRequest) => {
+
+        const accessToken = await getAccessTokenSilently(); // Retrieve the access token using the getAccessTokenSilently function
+
         // Send a POST request to the API endpoint with the user data
         const response = await fetch(`${API_BASE_URL}/api/my/user`, {
             method: 'POST', 
             headers: {
+                Authorization: `Bearer ${accessToken}`, // Include the access token in the Authorization header
                 'Content-Type': 'application/json' // Set the content type to JSON
             },
             body: JSON.stringify(user), // Convert the user object to a JSON string for the request body
