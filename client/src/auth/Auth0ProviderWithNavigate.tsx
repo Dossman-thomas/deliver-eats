@@ -15,6 +15,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const domain = import.meta.env.VITE_AUTH0_DOMAIN; // Retrieve Auth0 domain from environment variables
   const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID; // Retrieve Auth0 client ID from environment variables
   const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL; // Retrieve Auth0 redirect URI from environment variables
+  const audience = import.meta.env.VITE_AUTH0_AUDIENCE; // Retrieve Auth0 audience from environment variables
 
 // If any of the domain, client ID, or redirect URI are missing, throw an error
   if (!domain || !clientId || !redirectUri) {
