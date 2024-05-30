@@ -18,7 +18,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const audience = import.meta.env.VITE_AUTH0_AUDIENCE; // Retrieve Auth0 audience from environment variables
 
 // If any of the domain, client ID, or redirect URI are missing, throw an error
-  if (!domain || !clientId || !redirectUri) {
+  if (!domain || !clientId || !redirectUri || !audience) {
     throw new Error(
       "unable to initialize Auth"
     );
@@ -38,6 +38,7 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
         clientId={clientId}
         authorizationParams={{
             redirect_uri: redirectUri,
+            audience, // shorthand for audience: audience
         }}
         onRedirectCallback={ onRedirectCallback }
     >
