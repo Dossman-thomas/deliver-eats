@@ -22,10 +22,6 @@ export const validateMyUserRequest = [
         .isString()
         .notEmpty()
         .withMessage("Address Line 1 is required"),
-    body("addressLine2")
-        .isString()
-        .notEmpty()
-        .withMessage("Address Line 2 is required"),
     body("city")
         .isString()
         .notEmpty()
@@ -45,4 +41,3 @@ export const validateMyUserRequest = [
     handleValidationErrors,
 ];
    
-]

@@ -33,7 +33,6 @@ const updateCurrentUser = async (req: Request, res: Response) => {
         const { 
             name, 
             addressLine1, 
-            addressLine2, 
             city, 
             state, 
             country,
@@ -50,7 +49,6 @@ const updateCurrentUser = async (req: Request, res: Response) => {
         // Update the user's information with the new data from the request body
         user.name = name;
         user.addressLine1 = addressLine1;
-        user.addressLine2 = addressLine2;
         user.city = city;
         user.state = state;
         user.country = country;
