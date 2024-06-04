@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'; // Import Request and Response types from express
 import User from '../models/user'; // Import the User model
 
-// Function to get current user
-const getCurrentUser = async (req: Request, res: Resp) => {
+// Function to get current user based on mongoDB _id 
+const getCurrentUser = async (req: Request, res: Response) => {
     try {
 
         const currentUser = await User.findOne({ _id: req.userId });
@@ -21,8 +21,7 @@ const getCurrentUser = async (req: Request, res: Resp) => {
         res.status(500).json({ message: "Something went wrong" });
 
     }
-}
-
+};
 
 // Function to create a new user or return an existing user based on the provided auth0Id
 const createCurrentUser = async (req: Request, res: Response) => {

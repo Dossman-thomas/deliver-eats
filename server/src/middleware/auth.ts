@@ -57,7 +57,10 @@ export const jwtParse = async (
 
     // append information about the user to the request object
     req.auth0Id = auth0Id as string;
-    req.userId = user._id.toString();
+    
+    if(user._id){
+      req.userId = user._id.toString();
+    }
 
     next(); // call the next middleware, or controller handler
     

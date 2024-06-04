@@ -1,7 +1,9 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 // define the User model schema
 const UserSchema = new mongoose.Schema({
+    _id: ObjectId,
     auth0Id: {
         type: String,
         required: true,
