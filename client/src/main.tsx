@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom' // Import the Browser
 import AppRoutes from './AppRoutes' // Import the component that defines the application's routes
 import Auth0ProviderWithNavigate from './auth/Auth0ProviderWithNavigate' // Import the Auth0 provider for authentication
 import { QueryClient, QueryClientProvider } from 'react-query' // Import React Query's client and provider
+import { Toaster } from 'sonner'
 
 // Create a new QueryClient instance with default options
 const queryClient = new QueryClient({
@@ -26,6 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Auth0ProviderWithNavigate> 
           {/* Provide authentication context using Auth0 */}
           <AppRoutes /> 
+          <Toaster visibleToasts={1} position='top-right' richColors closeButton />
           {/* Render the application's routes */}
         </Auth0ProviderWithNavigate>
       </QueryClientProvider>
