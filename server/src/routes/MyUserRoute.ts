@@ -12,8 +12,9 @@ router.get(
     "/",
     jwtCheck, 
     jwtParse, 
-    MyUserController.getCurrentUser); 
-)
+    MyUserController.getCurrentUser
+); 
+
 
 router.post( // API endpoint to create a new user from the auth0 data
     "/", 
