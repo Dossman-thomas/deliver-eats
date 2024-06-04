@@ -27,7 +27,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Auth0ProviderWithNavigate> 
           {/* Provide authentication context using Auth0 */}
           <AppRoutes /> 
-          <Toaster visibleToasts={1} position='top-right' richColors closeButton />
+          <Toaster visibleToasts={1} position='top-right' richColors  />
           {/* Render the application's routes */}
         </Auth0ProviderWithNavigate>
       </QueryClientProvider>

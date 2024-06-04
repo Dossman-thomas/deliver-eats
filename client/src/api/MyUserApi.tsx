@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "react-query"; // Import the useMutation hook from react-query for handling mutations
+import { toast } from "sonner";
 
 // Base URL for the API, loaded from environment variables
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -89,11 +90,19 @@ export const useUpdateMyUser = () => {
     const {
         mutateAsync: updateUser,
         isLoading,
-        isError,
         isSuccess,
         error,
         reset
     } = useMutation(updateMyUserRequest);
+
+    if(isSuccess){
+        toast.success('User profile updated!');
+    }
+
+    if(error){
+        toast.error(error.toString());
+        reset();
+    }
 
     return {
         updateUser,
