@@ -3,6 +3,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
+import path from "path";
 import myUserRoute from "./routes/MyUserRoute";
 
 // connect to deliverEats MongoDB
@@ -18,6 +19,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Serve static files from the client build directory
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // add a "health" endpoint to check if the server is running properly. This is useful for monitoring and alerting purposes.
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health okay!" });
@@ -26,8 +30,12 @@ app.get("/health", async (req: Request, res: Response) => {
 // define a route handler for the user page
 app.use("/api/my/user", myUserRoute);
 
+// For any other route, serve the client’s index.html file
+app.get('*', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
+
 // start the Express server with '0.0.0.0' as the second argument to ensure the server binds to all available network interfaces, making it accessible from outside the local machine.
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`API server running on port http://localhost:${PORT}`);
 });
-
