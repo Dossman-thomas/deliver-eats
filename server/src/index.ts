@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => {
 });
 
 // set up the express app
-const PORT = process.env.PORT || 7000;
+const PORT = parseInt(process.env.PORT as string, 10) || 7000;  // ensure PORT is a number
 const app = express();
 
 // add middleware to parse JSON and urlencoded request bodies
@@ -26,7 +26,8 @@ app.get("/health", async (req: Request, res: Response) => {
 // define a route handler for the user page
 app.use("/api/my/user", myUserRoute);
 
-// start the Express server
-app.listen(PORT, () => {
+// start the Express server with '0.0.0.0' as the second argument to ensure the server binds to all available network interfaces, making it accessible from outside the local machine.
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`API server running on port http://localhost:${PORT}`);
 });
+
