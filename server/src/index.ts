@@ -1,4 +1,3 @@
-// import necessary dependencies
 import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
@@ -20,7 +19,8 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the client build directory
-app.use(express.static(path.join(__dirname, '../../client/dist')));
+const clientBuildPath = path.join(__dirname, '../../client/dist');
+app.use(express.static(clientBuildPath));
 
 // add a "health" endpoint to check if the server is running properly. This is useful for monitoring and alerting purposes.
 app.get("/health", async (req: Request, res: Response) => {
@@ -32,7 +32,7 @@ app.use("/api/my/user", myUserRoute);
 
 // For any other route, serve the client’s index.html file
 app.get('*', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
 // start the Express server with '0.0.0.0' as the second argument to ensure the server binds to all available network interfaces, making it accessible from outside the local machine.
